@@ -1,2 +1,2 @@
-# OpenSourceLSU
-FTP Server for LSU Programming Students
+# Block.Flock
+Decentralized Application for LSU computing students.
