@@ -3,8 +3,8 @@ pragma solidity ^0.4.2;
 import "ConvertLib.sol";
 
 contract FileDemo {	
-
-	function FileDemo() {
+	
+	/* function FileDemo() {
 		owner = msg.sender;
 		//balances[tx.origin] = 10000;
 		//storedData = initialValue;
@@ -148,5 +148,5 @@ contract FileDemo {
 		if(elem.fileData.owner == 0x0) {
 			return;
 		}
-	}
+	} */
 }
