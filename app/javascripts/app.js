@@ -7,26 +7,9 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   alert('The File APIs are not fully supported in this browser.');
 }
 
-
-//IPFS Utils
-/*
-ipfs.util.addFromFs('path/to/a/file', { recursive: true }, (err, result) => {
-  if (err) {
-    throw err
-  }
-  console.log(result)
-});
-/*
-ipfs.id()
-  .then(function (id) {
-    console.log('my id is: ', id)
-  });
-  .catch(function(err) {
-    console.log('Fail: ', err)
-  });
-*/
 var accounts;
 var account;
+
 
 function setStatus(message) {
   var status = document.getElementById("status");

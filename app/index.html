@@ -9,18 +9,15 @@
   
   <link href="./app.css" rel='stylesheet' type='text/css'>
   
-  <script src="./app.js"></script>
+  <script type="text/javascript" src="./app.js"></script>
 
+  <script src="https://unpkg.com/ipfs/dist/index.js">
+    var ipfs = window.IpfsApi('localhost', '5001');
+  </script>
+  
 </head>
 
 <body>
-
-  <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"
-  integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
-  crossorigin="anonymous"></script>
-
-  <script src="https://unpkg.com/ipfs/dist/index.min.js"></script>
-  <script src="https://unpkg.com/ipfs/dist/index.js"></script>
   
   <h1>Block.Flock</h1>
   
@@ -36,12 +33,15 @@
 
   <br>
 
-  <input type="file" id="files" name="files[]" multiple />
-  <output id="list"></output>
+  <h1>Make Hash</h1>
 
   <br>
 
+  <input type="file" id="source" name="files[]" multiple />
+  <output id="list"></output>
+
   <script>
+    
     function handleFileSelect(evt) {
       var files = evt.target.files; // FileList object
 
@@ -55,47 +55,21 @@
       }
       document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
     }
-    document.getElementById('files').addEventListener('change', handleFileSelect, false);
-  </script>
-
-  <br>
-
-  <h1>Make Hash</h1>
-
-  <br>
-
-  <script id="storehash">
-    //var ipfs = require('ipfs-api')();
-    var ipfs = window.IpfsApi('localhost', '5001');
-    function store() {
-      var toStore = document.getElementById('files').value;
+    document.getElementById('source').addEventListener('change', handleFileSelect, false);
+  
+  function store() {
+    var toStore = document.getElementById('source').value;
       //TODO un-break this call:
-        if(typeof Buffer != 'undefined' && Buffer.prototype) {
-          ipfs.files.add(new Buffer(toStore), function (err, res) {
-            if(err || !res) return console.error("ipfs add error", err, res);
-              res.forEach(function(file) {
-                console.log('successfully stored', file.Hash);
-                display(file.Hash); 
-              });
+      if(typeof Buffer != 'undefined' && Buffer.prototype) {
+        ipfs.add(new Buffer(toStore), function (err, res) {
+          if(err || !res) return console.error("ipfs add error", err, res);
+            res.forEach(function(file) {
+              console.log('successfully stored', file.Hash);
+              display(file.Hash); 
             });
-        }
-        document.getElementById('hashit').onclick = store();
-      }
-      
-  </script>
-
-
-  <button src="storehash" id="hashit" onclick="store()">Hash It</button>
-  <!-- <output id="files[]"><output> -->
-
-  <br>
-
-  <button id="showhash" onclick="display()">Show Hash</button>
-
-  <br>
-
-  <script>
-    var ipfs = window.IpfsApi('localhost', '5001');
+          });
+    }
+  }
     function display(hash) {
       ipfs.cat(hash, function(err, res) {
         if(err || !res) return console.error("ipfs cat error", err, res);
@@ -108,7 +82,14 @@
           }
         });
     }
+    document.getElementById('source').onclick=store;
   </script>
+
+  <button id="hashit">Hash It</button>
+
+  <br>
+
+  <button id="showhash">Show Hash</button>
   
   <br>
 
