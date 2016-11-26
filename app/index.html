@@ -15,31 +15,6 @@
     var ipfs = window.IpfsApi('localhost', '5001');
   </script>
   
-</head>
-
-<body>
-  
-  <h1>Block.Flock</h1>
-  
-  <br><br>
-  
-  <h2>Ðapp To Send Your Files</h2>
-  
-  <h3>You have <span class="black"><span id="balance"></span> FeatherCoin</span></h3>
-
-  <br>
-
-  <h1>Select File(s)</h1>
-
-  <br>
-
-  <h1>Make Hash</h1>
-
-  <br>
-
-  <input type="file" id="source" name="files[]" multiple />
-  <output id="list"></output>
-
   <script>
     
     function handleFileSelect(evt) {
@@ -83,6 +58,75 @@
         });
     }
     document.getElementById('source').onclick=store;
+  </script>
+</head>
+
+<body>
+  
+  <h1>Block.Flock</h1>
+  
+  <br><br>
+  
+  <h2>Ðapp To Send Your Files</h2>
+  
+  <h3>You have <span class="black"><span id="balance"></span> FeatherCoin</span></h3>
+
+  <br>
+
+  <h1>Select File(s)</h1>
+
+  <br>
+
+  <h1>Make Hash</h1>
+
+  <br>
+
+  <input type="file" id="source" name="files[]" multiple />
+  <output id="list"></output>
+
+  <script>
+    
+//    function handleFileSelect(evt) {
+//      var files = evt.target.files; // FileList object
+//
+//      // files is a FileList of File objects. List some properties.
+//      var output = [];
+//      for (var i = 0, f; f = files[i]; i++) {
+//        output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+//                  f.size, ' bytes, last modified: ',
+//                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+//                  '</li>');
+//      }
+//      document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+//    }
+//    document.getElementById('source').addEventListener('change', handleFileSelect, false);
+//  
+//  function store() {
+//    var toStore = document.getElementById('source').value;
+//      //TODO un-break this call:
+//      if(typeof Buffer != 'undefined' && Buffer.prototype) {
+//        ipfs.add(new Buffer(toStore), function (err, res) {
+//          if(err || !res) return console.error("ipfs add error", err, res);
+//            res.forEach(function(file) {
+//              console.log('successfully stored', file.Hash);
+//              display(file.Hash); 
+//            });
+//          });
+//    }
+//  }
+//    function display(hash) {
+//      ipfs.cat(hash, function(err, res) {
+//        if(err || !res) return console.error("ipfs cat error", err, res);
+//          if(res.readable) {
+//            console.error('unhandled: cat result is a pipe', res);
+//          } 
+//          else {
+//            document.getElementById('hash').innerText=hash;
+//            document.getElementById('content').innerText=res;
+//          }
+//        });
+//    }
+//    document.getElementById('source').onclick=store;
   </script>
 
   <button id="hashit">Hash It</button>
