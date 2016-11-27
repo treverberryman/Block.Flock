@@ -2,41 +2,6 @@
 (function (Buffer){
 var ipfs = require('ipfs-api')();
 
-/*
-function store() {
-  var toStore = document.getElementById('source').value;
-  //TODO un-break this call:
-  ipfs.files.add(new Buffer(toStore), function (err, res){
-    if(err || !res) return console.error("ipfs add error", err, res);
-
-    res.forEach(function(file) {
-      console.log('successfully stored', file.Hash);
-      //display(file.Hash); 
-    });
-  });
-}
-
-function display(hash) {
-  ipfs.cat('some hash', function (err, stream) {
-    var res = ''
-
-    stream.on('data', function (chunk) {
-      res += chunk.toString()
-    })
-
-    stream.on('error', function (err) {
-      console.error('Oh nooo', err)    
-    })
-
-    stream.on('end', function () {
-      console.log('Got:', res)
-    })
-  });
-}
-*/
-
-//document.getElementById('hashit').onclick=store;
-
 function store () {
   const file = document.getElementById('source').files[0]
   const reader = new FileReader()
@@ -58,7 +23,7 @@ function store () {
 
 function display (hash) {
   document.getElementById('hash').innerHTML =
-    "<a href='http://localhost:9000/ipfs/"+hash+"'>"+hash+"</a>"
+    "<a target='_blank' href='http://localhost:9000/ipfs/"+hash+"'>"+hash+"</a>"
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9929,8 +9894,8 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-}).call(this,{"isBuffer":require("../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315}],73:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315}],73:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 var intSize = 4;
@@ -11193,8 +11158,8 @@ module.exports = (send) => {
   })
 }
 
-}).call(this,{"isBuffer":require("../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"../add-to-dagnode-transform":85,"isstream":140,"promisify-es6":226}],87:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"../add-to-dagnode-transform":85,"isstream":140,"promisify-es6":226}],87:[function(require,module,exports){
 'use strict'
 
 const promisify = require('promisify-es6')
@@ -11320,8 +11285,8 @@ module.exports = (send) => {
   }
 }
 
-}).call(this,{"isBuffer":require("../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"bl":36,"cids":63,"ipfs-block":122,"multihashes":208,"promisify-es6":226}],89:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"bl":36,"cids":63,"ipfs-block":122,"multihashes":208,"promisify-es6":226}],89:[function(require,module,exports){
 'use strict'
 
 const promisify = require('promisify-es6')
@@ -12842,8 +12807,8 @@ module.exports = function (multihash) {
 }
 
 
-}).call(this,{"isBuffer":require("../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"bs58":58,"is-ipfs":135}],114:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"bs58":58,"is-ipfs":135}],114:[function(require,module,exports){
 'use strict'
 
 const pkg = require('../package.json')
@@ -12908,8 +12873,8 @@ module.exports = function (send, hash, callback) {
     })
 }
 
-}).call(this,{"isBuffer":require("../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"async/parallel":31,"bl":36,"ipld-dag-pb":132}],116:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"async/parallel":31,"bl":36,"ipld-dag-pb":132}],116:[function(require,module,exports){
 'use strict'
 
 const isNode = require('detect-node')
@@ -13375,8 +13340,8 @@ exports = module.exports = function getRequestAPI (config) {
   return send
 }
 
-}).call(this,{"isBuffer":require("../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"./get-files-stream":116,"./request":120,"concat-stream":65,"detect-node":75,"ndjson":212,"once":221,"qs":241}],120:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"./get-files-stream":116,"./request":120,"concat-stream":65,"detect-node":75,"ndjson":212,"once":221,"qs":241}],120:[function(require,module,exports){
 'use strict'
 
 const httpRequest = require('http').request
@@ -13573,8 +13538,8 @@ class DAGLink {
 exports = module.exports = DAGLink
 exports.create = require('./create')
 
-}).call(this,{"isBuffer":require("../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"./create":123,"assert":302,"multihashes":208}],125:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"./create":123,"assert":302,"multihashes":208}],125:[function(require,module,exports){
 'use strict'
 
 const dagNodeUtil = require('./util')
@@ -13803,8 +13768,8 @@ function rmLink (dagNode, nameOrMultihash, callback) {
 
 module.exports = rmLink
 
-}).call(this,{"isBuffer":require("../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"./create":127,"./util":130}],130:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"./create":127,"./util":130}],130:[function(require,module,exports){
 (function (Buffer){
 'use strict'
 
@@ -44216,8 +44181,8 @@ module.exports = function (proto, opts) {
   return new Messages()
 }
 
-}).call(this,{"isBuffer":require("../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"./compile":231,"protocol-buffers-schema":227}],234:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":315,"./compile":231,"protocol-buffers-schema":227}],234:[function(require,module,exports){
 arguments[4][194][0].apply(exports,arguments)
 },{"dup":194}],235:[function(require,module,exports){
 arguments[4][195][0].apply(exports,arguments)

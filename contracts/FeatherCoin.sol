@@ -43,6 +43,7 @@ contract FeatherCoin {
 	function getBalance(address addr) returns(uint) {
 		return balances[addr];
 	}
+}
 
 
 
@@ -196,4 +197,4 @@ contract FeatherCoin {
 	}
 	*/
 	
-}
+
