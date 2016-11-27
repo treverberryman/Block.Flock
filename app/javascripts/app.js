@@ -21,7 +21,8 @@ function refreshBalance() {
 function sendCoin() {
   var meta = FeatherCoin.deployed();
 
-  var amount = parseInt(document.getElementById("amount").value);
+  var hash     = document.getElementById("hash");
+  var amount   = parseInt(document.getElementById("amount").value);
   var receiver = document.getElementById("receiver").value;
 
   setStatus("Initiating transaction... (please wait)");
@@ -33,6 +34,13 @@ function sendCoin() {
     console.log(e);
     setStatus("Error sending coin; see log.");
   });
+
+  meta.IPFSHash(hash, {from: account}).then(function() {
+  }).catch(function(e) {
+    console.log(e);
+    setStatus("Error sending hash; see log.");
+  });
+
 };
 
 window.onload = function() {
