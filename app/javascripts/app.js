@@ -6,6 +6,13 @@ function setStatus(message) {
   status.innerHTML = message;
 };
 
+function printAddress() {
+  var meta = FeatherCoin.deployed();
+  var address_element = document.getElementById("address");
+  var cur_address = meta.address;
+  address_element.innerHTML = cur_address;
+};
+
 function refreshBalance() {
   var meta = FeatherCoin.deployed();
 
@@ -63,7 +70,8 @@ window.onload = function() {
     accounts = accs;
     account = accounts[0];
 
-    //sendHash();
+    printAddress();
+    sendHash();
     refreshBalance();
   });
 }
