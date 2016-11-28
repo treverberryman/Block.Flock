@@ -45,8 +45,8 @@ contract FeatherCoin {
 		return balances[addr];
 	}
 
-	function IPFSHash(string _hash) {
-		hash = _hash;
-		return;
-	}
+	function IPFSHash() public constant returns (string _hash) {
+    	hash = _hash;
+    	return hash;
+  	}
 }

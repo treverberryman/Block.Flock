@@ -18,29 +18,34 @@ function refreshBalance() {
   });
 };
 
+function sendHash() {
+  var meta = FeatherCoin.deployed();
+
+  meta.IPFSHash(hash).then(function(value) {
+    var hash = document.getElementById("hash").value;
+    hash.innerHTML = value.valueOf();
+  }).catch(function(e) {
+    console.log(e);
+    setStatus("Error sending file; see log.");
+  });
+};
+
 function sendCoin() {
   var meta = FeatherCoin.deployed();
 
-  var hash     = document.getElementById("hash");
   var amount   = parseInt(document.getElementById("amount").value);
   var receiver = document.getElementById("receiver").value;
 
   setStatus("Initiating transaction... (please wait)");
 
   meta.sendCoin(receiver, amount, {from: account}).then(function() {
+    sendHash();
     setStatus("Transaction complete!");
     refreshBalance();
   }).catch(function(e) {
     console.log(e);
     setStatus("Error sending coin; see log.");
   });
-
-  meta.IPFSHash(hash, {from: account}).then(function() {
-  }).catch(function(e) {
-    console.log(e);
-    setStatus("Error sending hash; see log.");
-  });
-
 };
 
 window.onload = function() {
@@ -58,6 +63,7 @@ window.onload = function() {
     accounts = accs;
     account = accounts[0];
 
+    //sendHash();
     refreshBalance();
   });
 }
