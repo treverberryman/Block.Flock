@@ -1,23 +1,29 @@
 var accounts;
 var account;
 
+
 function setStatus(message) {
-  var status = document.getElementById("status");
+  var status       = document.getElementById("status");
   status.innerHTML = message;
 };
 
 function printAddress() {
-  var meta = FeatherCoin.deployed();
-  var address_element = document.getElementById("address");
-  var cur_address = meta.address;
+  var meta                  = FeatherCoin.deployed();
+  var address_element       = document.getElementById("address");
+  //meta.address              = 0x419fbcd91449cf927a8155991ade1b3b21f1afe5;
+  var cur_address           = meta.address;
   address_element.innerHTML = cur_address;
 };
 
 function refreshBalance() {
   var meta = FeatherCoin.deployed();
-
+  //meta.address              = '0x419fbcd91449cf927a8155991ade1b3b21f1afe5';
+  console.log(meta.address);
   meta.getBalance.call(account, {from: account}).then(function(value) {
-    var balance_element = document.getElementById("balance");
+    var balance_element       = document.getElementById("balance");
+    var cur_address           = meta.address;
+    web3.eth.defaultAccount   = cur_address;
+    console.log(web3.eth.defaultAccount);
     balance_element.innerHTML = value.valueOf();
   }).catch(function(e) {
     console.log(e);
@@ -42,10 +48,11 @@ function sendCoin() {
 
   var amount   = parseInt(document.getElementById("amount").value);
   var receiver = document.getElementById("receiver").value;
+  var receiver_addr = FeatherCoin.at(receiver);
+  console.log(receiver_addr.address);
 
   setStatus("Initiating transaction... (please wait)");
-
-  meta.sendCoin(receiver, amount, {from: account}).then(function() {
+  meta.sendCoin(receiver_addr.address, amount, {from: account}).then(function() {
     sendHash();
     setStatus("Transaction complete!");
     refreshBalance();
@@ -56,6 +63,7 @@ function sendCoin() {
 };
 
 window.onload = function() {
+  console.log(FeatherCoin.deployed());
   web3.eth.getAccounts(function(err, accs) {
     if (err != null) {
       alert("There was an error fetching your accounts.");
@@ -68,10 +76,14 @@ window.onload = function() {
     }
 
     accounts = accs;
-    account = accounts[0];
+    account  = accounts[0];
+    
 
+    var accounts = web3.eth.accounts;
+    console.log(accounts);
+
+    refreshBalance();
     printAddress();
     sendHash();
-    refreshBalance();
   });
 }
