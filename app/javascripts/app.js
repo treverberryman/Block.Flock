@@ -9,21 +9,20 @@ function setStatus(message) {
 
 function printAddress() {
   var meta                  = FeatherCoin.deployed();
+  var accounts = web3.eth.accounts;
+  var account  = accounts[0];
+  var from_address           = account;
   var address_element       = document.getElementById("address");
-  //meta.address              = 0x419fbcd91449cf927a8155991ade1b3b21f1afe5;
-  var cur_address           = meta.address;
-  address_element.innerHTML = cur_address;
+  address_element.innerHTML = from_address;
+
 };
 
 function refreshBalance() {
   var meta = FeatherCoin.deployed();
-  //meta.address              = '0x419fbcd91449cf927a8155991ade1b3b21f1afe5';
-  console.log(meta.address);
-  meta.getBalance.call(account, {from: account}).then(function(value) {
+  var accounts = web3.eth.accounts;
+  var account1 = accounts[0];
+  meta.getBalance.call(account1, {from: account1}).then(function(value) {
     var balance_element       = document.getElementById("balance");
-    var cur_address           = meta.address;
-    web3.eth.defaultAccount   = cur_address;
-    console.log(web3.eth.defaultAccount);
     balance_element.innerHTML = value.valueOf();
   }).catch(function(e) {
     console.log(e);
@@ -47,12 +46,19 @@ function sendCoin() {
   var meta = FeatherCoin.deployed();
 
   var amount   = parseInt(document.getElementById("amount").value);
-  var receiver = document.getElementById("receiver").value;
-  var receiver_addr = FeatherCoin.at(receiver);
-  console.log(receiver_addr.address);
+  var accounts = web3.eth.accounts;
+  var account1 = accounts[0];
+  var account2 = accounts[1];
+  var sender   = account1;
+  var receiver = account2;
+  // var sender   = document.getElementById("sender").value;
+  // var receiver = document.getElementById("receiver").value;
+  // var sender   = document.getElementById("sender").value;
+  //var receiver_addr = FeatherCoin.at(receiver);
+  //console.log(receiver_addr.address);
 
   setStatus("Initiating transaction... (please wait)");
-  meta.sendCoin(receiver_addr.address, amount, {from: account}).then(function() {
+  meta.sendCoin(receiver, amount, {from: sender}).then(function() {
     sendHash();
     setStatus("Transaction complete!");
     refreshBalance();
