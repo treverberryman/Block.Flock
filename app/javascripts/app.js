@@ -32,14 +32,24 @@ function refreshBalance() {
 
 function sendHash() {
   var meta = FeatherCoin.deployed();
+  var hash = document.getElementById("hash").value;
+  var accounts = web3.eth.accounts;
+  var account1 = accounts[0];
+  var account2 = accounts[1];
+  var sender   = account1;
+  var receiver = account2;
 
-  meta.IPFSHash(hash).then(function(value) {
-    var hash = document.getElementById("hash").value;
-    hash.innerHTML = value.valueOf();
+  meta.sendHash(receiver, hash, {from:sender,data: web3.toHex(hash)}).then(function(value) {
+    var hash_element       = document.getElementById("hash");
+    hash_element.innerHTML = value.valueOf();
+    setStatus("File Hash Sent");
   }).catch(function(e) {
     console.log(e);
     setStatus("Error sending file; see log.");
   });
+
+  
+
 };
 
 function sendCoin() {
@@ -59,7 +69,6 @@ function sendCoin() {
 
   setStatus("Initiating transaction... (please wait)");
   meta.sendCoin(receiver, amount, {from: sender}).then(function() {
-    sendHash();
     setStatus("Transaction complete!");
     refreshBalance();
   }).catch(function(e) {
@@ -90,6 +99,5 @@ window.onload = function() {
 
     refreshBalance();
     printAddress();
-    sendHash();
   });
 }

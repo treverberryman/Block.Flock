@@ -1,4 +1,4 @@
-pragma solidity ^0.4.2;
+pragma solidity ^0.4.4;
 
 import "ConvertLib.sol";
 
@@ -9,16 +9,30 @@ import "ConvertLib.sol";
 
 contract FeatherCoin {
 	mapping (address => uint) balances;
+
 	uint public storedData;
 	uint public initialValue = 0;
 	string public hash;
 
 	event Transfer(address indexed _from, address indexed _to, uint256 _value);
+	event NewMessage(address indexed _from, address indexed _to, string indexed _data);
 	// Constructor
 	function FeatherCoin() {
 		balances[tx.origin] = 10000;
 		storedData = initialValue;
-		//owner = msg.sender;
+	}
+
+	function sendHash(address receiver, bytes32 hash) payable returns(bool sent) {
+        NewMessage(msg.sender, receiver, hash);
+        return true;
+    }
+
+	function sendCoin(address receiver, uint amount) returns(bool sufficient) {
+		if (balances[msg.sender] < amount) return false;
+		balances[msg.sender] -= amount;
+		balances[receiver] += amount;
+		Transfer(msg.sender, receiver, amount);
+		return true;
 	}
 
 	function set(uint x) {
@@ -29,14 +43,6 @@ contract FeatherCoin {
 		return storedData;
 	}
 
-	function sendCoin(address receiver, uint amount) returns(bool sufficient) {
-		if (balances[msg.sender] < amount) return false;
-		balances[msg.sender] -= amount;
-		balances[receiver] += amount;
-		Transfer(msg.sender, receiver, amount);
-		return true;
-	}
-
 	function getBalanceInEth(address addr) returns(uint){
 		return ConvertLib.convert(getBalance(addr),2);
 	}
@@ -45,8 +51,8 @@ contract FeatherCoin {
 		return balances[addr];
 	}
 
-	function IPFSHash() public constant returns (string _hash) {
-    	hash = _hash;
-    	return hash;
-  	}
+	// function IPFSHash() public constant returns (string _hash) {
+ //    	hash = _hash;
+ //    	return hash;
+ //  	}
 }
