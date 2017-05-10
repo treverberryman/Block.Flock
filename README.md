@@ -1,5 +1,5 @@
 # Block.Flock
-Ðapp to send your IPFS file hashes over the Ethereum blockchain
+Ðapp to send your IPFS file hashes over the Ethereum blockchain. This service is a proof of concept implementation and not fully complete.
 
 # Programs to install:
 
