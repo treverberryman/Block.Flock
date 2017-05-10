@@ -1,5 +1,5 @@
 # Block.Flock
-Decentralized Application for LSU computing students.
+Ðapp to send your IPFS file hashes over the Ethereum blockchain
 
 # Programs to install:
 
